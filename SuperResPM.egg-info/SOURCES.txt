@@ -1,0 +1,9 @@
+setup.py
+./SuperResPM.egg-info/PKG-INFO
+./SuperResPM.egg-info/SOURCES.txt
+./SuperResPM.egg-info/dependency_links.txt
+./SuperResPM.egg-info/top_level.txt
+SuperResPM.egg-info/PKG-INFO
+SuperResPM.egg-info/SOURCES.txt
+SuperResPM.egg-info/dependency_links.txt
+SuperResPM.egg-info/top_level.txt
