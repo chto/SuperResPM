@@ -1,6 +1,0 @@
-[submodule "SuperResPM/JaxPM"]
-	path = SuperResPM/JaxPM
-	url = https://github.com/chto/JaxPM.git
-[submodule "SuperResPM/diffrax"]
-	path = SuperResPM/diffrax
-	url = https://github.com/chto/diffrax.git
