@@ -1,4 +1,0 @@
-[submodule "SuperResPM/--force"]
-	path = SuperResPM/--force
-	url = https://github.com/chto/diffrax.git
-	branch = AbstractReversibleSolver
