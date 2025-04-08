@@ -11,6 +11,10 @@ The goal is to make it a cosmology-ready code for field-level inferences.
 - Differentiable with reversible adjoint for efficient gradient computation
 - Compatible with `jaxpm` forces and `jax_cosmo` cosmology
 
+## Installation 
+```
+sh install.sh
+```
 ---
 
 ## 🔧 Example Usage
