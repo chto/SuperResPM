@@ -2,6 +2,9 @@
 cd SuperResPM/diffrax  
 pip install -e .
 cd ../../
+cd SuperResPM/jax_cosmo 
+pip install -e .
+cd ../../
 cd SuperResPM/JaxPM
 pip install -e .
 cd ../../
