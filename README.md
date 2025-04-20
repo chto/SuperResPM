@@ -13,6 +13,7 @@ The goal is to make it a cosmology-ready code for field-level inferences.
 
 ## Installation 
 ```
+git clone --recurse-submodules -j8 https://github.com/chto/SuperResPM.git
 sh install.sh
 ```
 ---
