@@ -6,3 +6,6 @@
 	path = SuperResPM/JaxPM
 	url = https://github.com/chto/JaxPM.git
 	branch = fastpm
+[submodule "SuperResPM/jax_cosmo"]
+	path = SuperResPM/jax_cosmo
+	url = https://github.com/chto/jax_cosmo.git
