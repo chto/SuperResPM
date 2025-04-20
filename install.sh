@@ -1,8 +1,8 @@
 #!/bin/bash
-cd code/diffrax  
+cd SuperResPM/diffrax  
 pip install .
 cd ../../
-cd code/JaxPM
+cd SuperResPM/JaxPM
 pip install .
 cd ../../
-pip install .
+pip install -e .
