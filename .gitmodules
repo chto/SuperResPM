@@ -1,14 +1,16 @@
 [submodule "SuperResPM/diffrax"]
 	path = SuperResPM/diffrax
 	url = https://github.com/chto/diffrax.git
-	branch = AbstractReversibleSolver
+	branch = SuperResPM
 [submodule "SuperResPM/JaxPM"]
 	path = SuperResPM/JaxPM
 	url = https://github.com/chto/JaxPM.git
-	branch = fastpm
+	branch = SuperResPM
 [submodule "SuperResPM/jax_cosmo"]
 	path = SuperResPM/jax_cosmo
 	url = https://github.com/chto/jax_cosmo.git
+	branch = fastpm
 [submodule "SuperResPM/numpyro"]
 	path = SuperResPM/numpyro
 	url = https://github.com/chto/numpyro.git
+	branch = fastpm
