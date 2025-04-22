@@ -110,6 +110,7 @@ class FPMLeapFrog(AbstractReversibleSolver):
         solver_state: _SolverState,
         made_jump: BoolScalarLike,
     ) -> tuple[Y, _ErrorEstimate, DenseInfo, _SolverState, RESULTS]:
+        #jax.debug.print("forward t: {t0} {t1}", t0=t0, t1=t1)
         del made_jump
         tm1, ym1, dt = solver_state
         t0 =  jnp.atleast_1d(t0)
@@ -139,7 +140,7 @@ class FPMLeapFrog(AbstractReversibleSolver):
         gc.collect()
         y1 = yin3
         dense_info = dict(y0=y0, y1=y1)
-        solver_state=(t1[0],y1, t1[0]-t0[0])
+        solver_state=(t1[0],y1, dt)
         return y1, None, dense_info, solver_state, RESULTS.successful
 
     def backward_step(
@@ -152,13 +153,13 @@ class FPMLeapFrog(AbstractReversibleSolver):
         solver_state: _SolverState,
         made_jump: BoolScalarLike,
     ) -> tuple[Y,  DenseInfo, _SolverState]:
-        t0, y1, dt = solver_state
+        _, y1, _ = solver_state
+
         del made_jump
-        tm1 = t0-dt
+        t1 =  jnp.atleast_1d(t1)
         t0 =  jnp.atleast_1d(t0)
-        tm1 =  jnp.atleast_1d(tm1)
-        dt=jnp.atleast_1d(dt)
-        tmid = (t0 + tm1)/2
+        dt=jnp.atleast_1d(t1-t0)
+        tmid = (t0 + t1)/2
         initial_t0=args[2]
         cosmo = args[0]
     
@@ -166,29 +167,29 @@ class FPMLeapFrog(AbstractReversibleSolver):
         # First kick hal-step
         args[-1]=0
         args[-2]=0 # Recompute forces or not 
-        control1 = terms.contr(t0, tmid, tc=t0, action="Kick", cosmo=cosmo)
-        yin1 = (y2**ω + terms.vf_prod(t0, y1, args, control1) ** ω).ω
+        control1 = terms.contr(t1, tmid, tc=t1, action="Kick", cosmo=cosmo)
+        yin1 = (y2**ω + terms.vf_prod(t1, y1, args, control1) ** ω).ω
         # Drift full step
         args[-1]=1
         args[-2]=0 # Recompute forces or not 
-        control2 = terms.contr(t0, tm1,tc=tmid, action="Drift", cosmo=cosmo)
+        control2 = terms.contr(t1, t0,tc=tmid, action="Drift", cosmo=cosmo)
         yin2 = (yin1**ω + terms.vf_prod(tmid,  yin1, args, control2) ** ω).ω
         del yin1
         # 2nd kick
         args[-1]=0
         args[-2]=1 # Recompute forces or not 
-        control3 = terms.contr(tmid, tm1, tc=tm1, action="Kick", cosmo=cosmo)
+        control3 = terms.contr(tmid, t0, tc=t0, action="Kick", cosmo=cosmo)
         yin2=yin2.at[2].multiply(0) 
-        yin3 = (yin2**ω + terms.vf_prod(tm1, yin2, args, control3) ** ω).ω
+        yin3 = (yin2**ω + terms.vf_prod(t0, yin2, args, control3) ** ω).ω
         yin3=yin3.at[2].divide(control3)
         del yin2
         gc.collect()
         y0 = yin3
 
         solver_state = jax.lax.cond(
-            tm1[0] > 0, lambda _: (tm1[0], y0, dt[0]), lambda _: (t0[0],y1,dt[0]), None
+            t0[0] > 0, lambda _: (t0[0], y0, dt[0]), lambda _: (t1[0],y1,dt[0]), None
         )
-        dense_info = dict(y0=y1, y1=y2)
+        dense_info = dict(y0=y0, y1=y2)
         return y0, dense_info, solver_state
 
     

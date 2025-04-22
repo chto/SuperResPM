@@ -9,3 +9,6 @@
 [submodule "SuperResPM/jax_cosmo"]
 	path = SuperResPM/jax_cosmo
 	url = https://github.com/chto/jax_cosmo.git
+[submodule "SuperResPM/numpyro"]
+	path = SuperResPM/numpyro
+	url = https://github.com/chto/numpyro.git

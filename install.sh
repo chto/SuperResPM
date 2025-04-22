@@ -1,11 +1,14 @@
 #!/bin/bash
 cd SuperResPM/diffrax  
-pip install -e .
+pip install .
 cd ../../
 cd SuperResPM/jax_cosmo 
-pip install -e .
+pip install .
 cd ../../
 cd SuperResPM/JaxPM
-pip install -e .
+pip install .
+cd ../../
+cd SuperResPM/numpyro
+pip install .
 cd ../../
 pip install -e .
