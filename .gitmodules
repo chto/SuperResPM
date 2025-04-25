@@ -14,3 +14,6 @@
 	path = SuperResPM/numpyro
 	url = https://github.com/chto/numpyro.git
 	branch = SuperResPM
+[submodule "SuperResPM/blackjax"]
+	path = SuperResPM/blackjax
+	url = https://github.com/blackjax-devs/blackjax.git
