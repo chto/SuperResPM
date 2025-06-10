@@ -17,3 +17,6 @@
 [submodule "SuperResPM/blackjax"]
 	path = SuperResPM/blackjax
 	url = https://github.com/blackjax-devs/blackjax.git
+[submodule "SuperResPM/FieldlevelLensing"]
+	path = SuperResPM/FieldlevelLensing
+	url = https://github.com/yomori/FieldlevelLensing
